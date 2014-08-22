@@ -1,0 +1,11 @@
+{
+  "name": "hello-node-talk",
+  "version": "0.0.0",
+  "description": "a talk about nodejs i gave at work",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
