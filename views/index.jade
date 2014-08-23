@@ -1,0 +1,12 @@
+extend layout
+
+append head
+  link(rel='stylesheet', href='/app.css')
+  script.
+    var client = {
+      id: '#{id}'
+    };
+
+append body
+  .client.me(id="#{id}")
+  script(src="/app.js")

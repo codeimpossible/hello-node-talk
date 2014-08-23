@@ -1,0 +1,12 @@
+.me {
+  background: #336699!important;
+  z-index: 100!important;
+}
+
+.client {
+  background: #666;
+  position: absolute;
+  height: 64px;
+  width: 128px;
+  z-index: 1;
+}
