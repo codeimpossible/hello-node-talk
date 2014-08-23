@@ -34,9 +34,17 @@ app.get('/', function(req, res) {
 });
 
 io.sockets.on('connection', function(socket) {
+  var client;
   socket.on('update', function(data) {
     console.log("update from", data);
     clients[data.clientId].data = data;
+    client = clients[data.clientId];
     io.emit('move', clients[data.clientId]);
+  });
+  socket.on('disconnect', function(data) {
+    if(client) {
+      console.log('client disconnected!', client);
+      io.emit('destroy', client.data.clientId);
+    }
   });
 });
