@@ -1,20 +1,16 @@
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
 var _ = require('underscore');
 var jade = require('jade');
+
+var io = require('socket.io')(server);
 
 // host /public as a static file location
 app.use(express.static(__dirname + '/public'));
 
-
+// hash to store clients
 var clients = {};
-
-// view options go here
-var options = {
-
-};
 
 server.listen(8080);
 
@@ -29,10 +25,12 @@ var createClient = function() {
 
 app.get('/', function(req, res) {
   var template = jade.compileFile(__dirname + '/views/index.jade');
-  var html = template(_.extend({}, options, createClient()));
+  var data = createClient();
+  var html = template(data);
   res.send(html);
 });
 
+// created per client
 io.sockets.on('connection', function(socket) {
   var client;
   socket.on('update', function(data) {

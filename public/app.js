@@ -11,18 +11,6 @@ var move = function(clientId, client) {
   $client.css({ top: pos.top, left: pos.left });
 };
 
-var blur = function() {
-  $('.client:not(.me)').each(function() {
-    var $client = $(this);
-    var joined = $client.data().joined;
-    var time = (new Date()).getTime();
-
-    if(time - 180000 >= joined) $client.addClass('distance3');
-    else if(time - 120000 >= joined) $client.addClass('distance2');
-    else if(time - 60000 >= joined)  $client.addClass('distance1');
-  });
-};
-
 var getMovement = function(key, pos) {
   return ({
     '37': function(pos) { pos.left -= 10; return pos; },
@@ -48,6 +36,18 @@ var onKeyDown = function(e) {
 
     return false;
   }
+};
+
+var blur = function() {
+  $('.client:not(.me)').each(function() {
+    var $client = $(this);
+    var joined = $client.data().joined;
+    var time = (new Date()).getTime();
+
+    if(time - 180000 >= joined) $client.addClass('distance3');
+    else if(time - 120000 >= joined) $client.addClass('distance2');
+    else if(time - 60000 >= joined)  $client.addClass('distance1');
+  });
 };
 
 (function($) {
